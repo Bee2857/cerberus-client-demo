@@ -30,8 +30,8 @@ Below shows the basics you should know about Cerberus.
   
   Please be noted that:
   
-  1. Since every token expires, users must implement their own runtime token management mechanism.
-  2. It's unnecessary to delete expired tokens since Cerberus will do this for you.
+  1. Every token expires, users must implement their own runtime token management mechanism.
+  2. It's unnecessary to create or delete tokens on your own since Cerberus will do this for you.
 
 # What should you do
 
@@ -40,9 +40,17 @@ Below shows the basics you should know about Cerberus.
   Reach out for your contact @CTRIP, ask him/her to do the application for you. Ask them for your  appKey and appSecret.
 
 - To implement your own Cerberus client, you'll need: 
+  
   1. A backgroud thread to do your runtime app&token management.
   2. A customized http client to sign and send your http request.
-  3. For Java Developers, a demo implementation is provided, link: [【Download】](https://cerberus.ctrip.com/api/files/cerberusclientdemo.zip)
+  
+- It is guaranteed by Cerberus that  your app have at least one token with a remaining lifetime longer than 2 hours. It is  highly suggested that: 
+  
+  1. Acquire your token with appKey at startup.
+  2. Refresh your app info periodically, get and set the lastest token with a 30-minute interval.
+  3. NEVER delete your token manually, unless you have a potential token leakage, in which case,  ALWAYS create new token and update before deleting old ones. Otherwise API requests might fail.
+  
+- For Java Developers, a demo implementation is provided, link: [【link】](https://github.com/Bee2857/cerberus-client-demo)
 
 # App management API
 
@@ -51,7 +59,6 @@ Below shows the basics you should know about Cerberus.
 1. Let's say you already have an app with the following properties:
    - **appKey**: testApp1
    - **appSecret**: 111222333xxxyyyzzz
-   - **token**: qqqwwweeerrr
 2. With the system property:
    - **timeStamp**: 1552632509159(milliseconds)
 
@@ -59,22 +66,22 @@ Below shows the basics you should know about Cerberus.
 
 3. We'd like to remove token "qqqwwweeerrr", thus belowing uri will be used:
 
-> GET /api/app/token/delete?token=qqqwwweeerrr
+> GET /api/app/getApp?appKey=testApp1&type=detail
 
 4. Concatenate strings in the following order
 
    ```java
    String result = concat(uri.toLowerCase, appKey, timeStamp, secret);
-   // result = "/api/app/token/deletetestApp1552632509159111222333xxxyyyzzz";
+   // result = "/api/app/getapptestApp1552632509159111222333xxxyyyzzz";
    ```
 
 5. Invoke MD5 on the result string (charset: utf-8, lowercase, length:16), we'll get:
 
-   > sign = fb3616e7bd1ce2c9
+   > sign = 8db342c01c85cc27
 
 6. Add sign, timeStamp and appKey in the query string of your request, finally the request would be:
 
-   > GET /api/app/token/delete?token=qqqwwweeerrr&sign=fb3616e7bd1ce2c9&timeStamp=1552632509159&appKey=testApp1
+   > GET /api/app/getApp?token=qqqwwweeerrr&sign=8db342c01c85cc27&timeStamp=1552632509159&appKey=testApp1&type=detail
 
 ## Reqeuest address
 
