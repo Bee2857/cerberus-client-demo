@@ -12,10 +12,7 @@ Below shows the basics you should know about Cerberus.
 
 - **appSecret**
 
-  Secret key of your app. it is used for signature. Please be noted that:
-
-  1. AppSecret must be kept safely. Any leakage may lead to a safe-fail.
-  2. AppSecret can be modified, but handle this carefully otherwise your on-going API traffic might be effected.
+  Secret key of your app. it is used for signature. AppSecret must be kept safely. Any leakage may lead to a safe-fail.
 
 - **appKey**
 
@@ -64,7 +61,7 @@ Below shows the basics you should know about Cerberus.
 
 > Tip: Use the runtime timeStamp value because Cerberus server only accepts requests that are sent within 1 minute
 
-3. We'd like to remove token "qqqwwweeerrr", thus belowing uri will be used:
+3. We'd like to get detailed info of app "testApp1", thus belowing uri will be used:
 
 > GET /api/app/getApp?appKey=testApp1&type=detail
 
@@ -106,12 +103,12 @@ Below shows the basics you should know about Cerberus.
 
 - Response fields
 
-| name          | type         | example           | description                  |
-| ------------- | ------------ | ----------------- | ---------------------------- |
-| name          | String       | test service      | app name                     |
-| description   | String       | test service No.1 | app description              |
-| appCredential | Object       | {}                | credential related info, see |
-| tokens        | Object Array | []                | current tokens               |
+| name          | type         | example           | description             |
+| ------------- | ------------ | ----------------- | ----------------------- |
+| name          | String       | test service      | app name                |
+| description   | String       | test service No.1 | app description         |
+| appCredential | Object       | {}                | credential related info |
+| tokens        | Object Array | []                | current tokens          |
 
 Object fields(appCredential)
 
@@ -200,8 +197,6 @@ Object fields(token)
 
 ## Remove token
 
-> Tip: It's unnecessary to delete expired tokens since Cerberus will do this for you.
-
 - Request uri
 
   GET /api/app/token/delete?token=qqqwwweeerrr
@@ -225,10 +220,9 @@ Object fields(token)
 ## Authentication
 
 1. Let's say you already have an app with the following properties:
-   - **appKey**: testApp1
    - **appSecret**: 111222333xxxyyyzzz
    - **token**: qqqwwweeerrr
-
+   
 2. With the system property:
    - **timeStamp**: 1552632509159(milliseconds)
 
