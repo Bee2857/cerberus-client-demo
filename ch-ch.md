@@ -77,7 +77,7 @@ Cerberus是携程API网关的授权与认证模块，为三方用户与合作伙
 
 6. 将sign、timeStamp与appKey加入请求的queryString中，得到最终的访问uri：
 
-   > GET /api/app/getApp?token=qqqwwweeerrr&sign=8db342c01c85cc27&timeStamp=1552632509159&appKey=testApp1&type=detail
+   > GET /api/app/getApp?sign=8db342c01c85cc27&timeStamp=1552632509159&appKey=testApp1&type=detail
 
 ## 各环境地址
 

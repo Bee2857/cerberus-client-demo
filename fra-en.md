@@ -78,7 +78,7 @@ Below shows the basics you should know about Cerberus.
 
 6. Add sign, timeStamp and appKey in the query string of your request, finally the request would be:
 
-   > GET /api/app/getApp?token=qqqwwweeerrr&sign=8db342c01c85cc27&timeStamp=1552632509159&appKey=testApp1&type=detail
+   > GET /api/app/getApp?sign=8db342c01c85cc27&timeStamp=1552632509159&appKey=testApp1&type=detail
 
 ## Reqeuest address
 
