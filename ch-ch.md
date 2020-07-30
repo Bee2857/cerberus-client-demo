@@ -53,16 +53,16 @@ Cerberus是携程API网关的授权与认证模块，为三方用户与合作伙
 ## 权限校验
 
 1. 假设已有app，并且相关信息如下：
-   - **appKey**: testApp1
+   - **appKey**: testApp
    - **appSecret**: 111222333xxxyyyzzz
 2. 系统参数如下：
    - **timeStamp**: 1552632509159（毫秒）
 
 > Tip: Cerberus仅接受1分钟内发起的请求，因此务必使用线上实时生成的timeStamp值。
 
-3. 我们希望获取testApp1的详细信息，对应访问地址：
+3. 我们希望获取testApp的详细信息，对应访问地址：
 
-> GET /api/app/getApp?appKey=testApp1&type=detail
+> GET /api/app/getApp?appKey=testApp&type=detail
 
 4. 按照以下顺序拼接你的访问uri：
 
@@ -77,7 +77,7 @@ Cerberus是携程API网关的授权与认证模块，为三方用户与合作伙
 
 6. 将sign、timeStamp与appKey加入请求的queryString中，得到最终的访问uri：
 
-   > GET /api/app/getApp?sign=8db342c01c85cc27&timeStamp=1552632509159&appKey=testApp1&type=detail
+   > GET /api/app/getApp?sign=8db342c01c85cc27&timeStamp=1552632509159&appKey=testApp&type=detail
 
 ## 各环境地址
 

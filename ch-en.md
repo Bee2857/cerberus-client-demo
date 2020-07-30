@@ -54,16 +54,16 @@ Below shows the basics you should know about Cerberus.
 ## Authentication
 
 1. Let's say you already have an app with the following properties:
-   - **appKey**: testApp1
+   - **appKey**: testApp
    - **appSecret**: 111222333xxxyyyzzz
 2. With the system property:
    - **timeStamp**: 1552632509159(milliseconds)
 
 > Tip: Use the runtime timeStamp value because Cerberus server only accepts requests that are sent within 1 minute
 
-3. We'd like to get detailed info of app "testApp1", thus belowing uri will be used:
+3. We'd like to get detailed info of app "testApp", thus belowing uri will be used:
 
-> GET /api/app/getApp?appKey=testApp1&type=detail
+> GET /api/app/getApp?appKey=testApp&type=detail
 
 4. Concatenate strings in the following order
 
@@ -78,7 +78,7 @@ Below shows the basics you should know about Cerberus.
 
 6. Add sign, timeStamp and appKey in the query string of your request, finally the request would be:
 
-   > GET /api/app/getApp?sign=8db342c01c85cc27&timeStamp=1552632509159&appKey=testApp1&type=detail
+   > GET /api/app/getApp?sign=8db342c01c85cc27&timeStamp=1552632509159&appKey=testApp&type=detail
 
 ## Reqeuest address
 
