@@ -72,8 +72,10 @@ Below shows the basics you should know about Cerberus.
    // result = "/api/app/getapptestApp1552632509159111222333xxxyyyzzz";
    ```
 
-5. Invoke MD5 on the result string (charset: utf-8, lowercase, length:16), we'll get:
+5. Invoke MD5 on the result string (charset: utf-8, lowercase, fetch[8,24)bits, {X|8<=X<24}, length:16), we'll get:
 
+   > MD5 = b8aff45d<font size=3 color=Blue>8db342c01c85cc27</font>dee4a96f
+   >
    > sign = 8db342c01c85cc27
 
 6. Add sign, timeStamp and appKey in the query string of your request, finally the request would be:
