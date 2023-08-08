@@ -71,8 +71,10 @@ Cerberus是携程API网关的授权与认证模块，为三方用户与合作伙
    // result = "/api/app/getapptestApp1552632509159111222333xxxyyyzzz";
    ```
 
-5. 对上一步得到的字符串进行MD5编码，采用utf-8，输出16位小写字符串，我们将得到签名：
+5. 对上一步得到的字符串进行MD5编码，采用utf-8，取第[8,24)位，即{X|8<=X<24}，输出16位小写字符串，我们将得到签名：
 
+   > MD5 = b8aff45d<font size=3 color=Blue>8db342c01c85cc27</font>dee4a96f
+   > 
    > sign = 8db342c01c85cc27
 
 6. 将sign、timeStamp与appKey加入请求的queryString中，得到最终的访问uri：
