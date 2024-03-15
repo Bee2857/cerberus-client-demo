@@ -57,7 +57,7 @@ public class HttpClient {
             int statusCode = response.getStatusLine().getStatusCode();
             String result = EntityUtils.toString(response.getEntity(), Consts.UTF_8);
             if (statusCode != 200) {
-                throw new Exception("http status code:" + statusCode + ", url:" + url + "response: " + result);
+                throw new Exception("http status code: " + statusCode + ", url: " + url + ", response: " + result);
             }
             return result == null ? "" : result;
         } finally {

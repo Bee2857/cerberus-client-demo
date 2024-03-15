@@ -1,6 +1,7 @@
 package com.ctrip.framework.cerberus.client;
 
 public enum EnvHelper {
+    TEST("test", "https://", "cerberus-fws.ctripqa.com"),
     PRO("pro", "https://", "cerberus.ctrip.com"),
     PRO_FRAAWS("pro_fraaws", "https://", "fra-cerberus.trip.com");
 
