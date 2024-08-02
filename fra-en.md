@@ -238,8 +238,10 @@ Object fields(token)
    // result = "/gateway/testqqqwwweeerrr1552632509159111222333xxxyyyzzz";
    ```
 
-5. Invoke MD5 on the result string (charset: utf-8, lowercase, length:16), we'll get:
+5. Invoke MD5 on the result string (charset: utf-8, lowercase, fetch[8,24)bits, {X|8<=X<24}, length:16), we'll get:
 
+   > MD5 = b9f5a434<font size=3 color=Blue>b78a213446016f1e</font>937e9b4b
+   > 
    > sign = b78a213446016f1e
 
 6. Add sign, timeStamp, token in the query string of your request, finally the request would be:
