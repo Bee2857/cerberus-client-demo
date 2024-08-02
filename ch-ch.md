@@ -239,8 +239,10 @@ Object fields(token)
    // result = "/apiproxy/gateway/testqqqwwweeerrr1552632509159111222333xxxyyyzzz";
    ```
 
-5. 对上一步得到的字符串进行MD5编码，采用utf-8，输出16位小写字符串，我们将得到签名：
+5. 对上一步得到的字符串进行MD5编码，采用utf-8，取第[8,24)位，即{X|8<=X<24}，输出16位小写字符串，我们将得到签名：
 
+   > MD5 = ebd462d2<font size=3 color=Blue>2aebf9bd91ffa82a</font>6abb6732
+   >    
    > sign = 2aebf9bd91ffa82a
 
 6. 将sign、timeStamp与token加入请求的queryString中，得到最终的访问uri：
