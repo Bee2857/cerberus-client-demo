@@ -241,10 +241,12 @@ Object fields(token)
    // result = "/apiproxy/gateway/testqqqwwweeerrr1552632509159111222333xxxyyyzzz";
    ```
 
-5. Invoke MD5 on the result string (charset: utf-8, lowercase, length:16), we'll get:
+5. Invoke MD5 on the result string (charset: utf-8, lowercase, fetch[8,24)bits, {X|8<=X<24}, length:16), we'll get:
 
+   > MD5 = ebd462d2<font size=3 color=Blue>2aebf9bd91ffa82a</font>6abb6732
+   >
    > sign = 2aebf9bd91ffa82a
-
+   
 6. Add sign, timeStamp, token in the query string of your request, finally the request would be:
 
    > https://apiproxy.ctrip.com/apiproxy/gateway/test?sign=2aebf9bd91ffa82a&timeStamp=1552632509159&token=qqqwwweeerrr
