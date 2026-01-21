@@ -4,8 +4,10 @@ import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.*;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContexts;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,11 +17,32 @@ import java.util.Map;
 
 
 public class HttpClient {
-    private static final CloseableHttpClient httpClient = HttpClients.createDefault();
+    private static final CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(newSSLSocketFactory()).build();
     private static final int DEFAULT_CONNECT_TIMEOUT = 10000;
     private static final int DEFAULT_READ_TIMEOUT = 30000;
 
     private static final Logger logger = LoggerFactory.getLogger(HttpClient.class);
+
+    private static SSLConnectionSocketFactory newSSLSocketFactory() {
+        try {
+            /**
+             * SSL and TLS 1.x are considered insecure, so the minimum required TLS version is 1.2.
+             * You can flexibly configure the TLS version according to your JDK environment.
+             * JDK6: Needs to be upgraded to JDK7 or above
+             * JDK7: Recommended to configure as TLSv1.2
+             * JDK8+: Recommended to configure as TLSv1.2 and TLSv1.3, if the version not supports TLSv1.3, it can also be configured as TLSv1.2
+             */
+            SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(
+                    SSLContexts.createDefault(),
+                    new String[]{"TLSv1.2", "TLSv1.3"},
+                    null,
+                    SSLConnectionSocketFactory.getDefaultHostnameVerifier());
+
+            return sslsf;
+        } catch (Exception e) {
+            throw new RuntimeException("init http client error.", e);
+        }
+    }
 
     public static String execute(HttpMethod method, String url, Map<String, String> headers, HttpEntity entity) throws Exception {
         CloseableHttpResponse response = null;
