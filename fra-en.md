@@ -48,6 +48,7 @@ Below shows the basics you should know about Cerberus.
   3. NEVER delete your token manually, unless you have a potential token leakage, in which case,  ALWAYS create new token and update before deleting old ones. Otherwise API requests might fail.
 
 - For Java Developers, a demo implementation is provided, link: [【link】](https://fra-cerberus.trip.com/api/files/fra/cerberusclientdemo.zip)
+  - Important: The demo requires JDK 8 or higher due to TLS version requirements.
 
 # App management API
 

@@ -47,6 +47,7 @@ Cerberus是携程API网关的授权与认证模块，为三方用户与合作伙
   5. 除非怀疑token泄露，否则请勿手动删除token。必须删除时，建议新建并刷新token，避免请求失败。
 
 - Java开发者可以参考我们的demo进行实现 [【链接】](https://github.com/Bee2857/cerberus-client-demo)
+  - 重要：因TLS版本要求，demo运行必须要JDK8及以上版本
 
 # App管理接口
 
